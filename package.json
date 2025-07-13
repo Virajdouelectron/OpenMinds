@@ -1,32 +1,51 @@
 {
-  "name": "vite-svelte-ts-starter",
+  "name": "openmind-ide",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:backend": "cargo run --manifest-path=backend/Cargo.toml",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^3.1.2",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
     "@tsconfig/svelte": "^5.0.4",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
     "svelte": "^4.2.19",
     "svelte-check": "^3.8.6",
+    "tailwindcss": "^4.1.11",
     "tslib": "^2.7.0",
     "typescript": "^5.5.3",
     "vite": "^5.4.2"
   },
   "dependencies": {
+    "@fontsource/inter": "^5.0.8",
+    "@microsoft/fetch-event-source": "^3.0.0",
     "@monaco-editor/loader": "^1.5.0",
+    "@monaco-editor/svelte": "^4.6.0",
+    "@popperjs/core": "^2.11.8",
+    "@skeletonlabs/skeleton": "^0.2.2",
+    "@skeletonlabs/tw-plugin": "^0.2.2",
     "@tailwindcss/forms": "^0.5.10",
-    "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
-    "autoprefixer": "^10.4.21",
+    "axios": "^1.6.7",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
     "lucide-svelte": "^0.525.0",
     "monaco-editor": "^0.52.2",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.11"
+    "svelte-dnd-action": "^0.9.43",
+    "svelte-loading-spinners": "^3.1.0",
+    "svelte-runes": "^0.2.0",
+    "svelte-tiptap": "^2.2.0",
+    "tiptap": "^2.8.0",
+    "tiptap-commands": "^1.17.0",
+    "tiptap-extensions": "^1.35.1",
+    "uuid": "^9.0.1"
   }
 }
