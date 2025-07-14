@@ -1,13 +1,14 @@
 use axum::{
-    extract::Extension,
     http::StatusCode,
     response::IntoResponse,
-    routing::{get, post},
-    Json, Router,
+    routing::get,
+    Router,
 };
 use std::{net::SocketAddr, sync::Arc};
+use tower_http::cors::{Any, CorsLayer};
 
 mod api;
+mod automl;
 mod error;
 mod models;
 mod python;
@@ -22,20 +23,18 @@ async fn main() -> Result<()> {
     // Initialize database
     let db = Arc::new(models::Database::new().await?);
 
+    // Enable CORS
+    let cors = CorsLayer::new()
+        .allow_origin(Any)
+        .allow_methods(Any)
+        .allow_headers(Any);
+
     // Build our application with routes
     let app = Router::new()
         .route("/api/health", get(health_check))
-        .route("/api/notebooks", get(api::notebooks::list_notebooks))
-        .route("/api/notebooks", post(api::notebooks::create_notebook))
-        .route("/api/notebooks/:id", get(api::notebooks::get_notebook))
-        .route("/api/notebooks/:id/cells", post(api::notebooks::add_cell))
-        .route(
-            "/api/notebooks/:notebook_id/cells/:cell_id/execute",
-            post(api::notebooks::execute_cell),
-        )
-        .route("/api/datasets", post(api::datasets::upload_dataset))
-        .route("/api/datasets", get(api::datasets::list_datasets))
-        .layer(Extension(db));
+        .nest("/api", api::create_api_router())
+        .layer(cors)
+        .with_state(db);
 
     // Run our app with hyper
     let addr = SocketAddr::from(([127, 0, 0, 1], 3001));
