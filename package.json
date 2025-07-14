@@ -29,7 +29,6 @@
     "@fontsource/inter": "^5.0.8",
     "@microsoft/fetch-event-source": "^2.0.0",
     "@monaco-editor/loader": "^1.5.0",
-    "@monaco-editor/svelte": "^4.6.0",
     "@popperjs/core": "^2.11.8",
     "@skeletonlabs/skeleton": "^0.2.2",
     "@skeletonlabs/tw-plugin": "^0.2.2",
